@@ -19,7 +19,7 @@ metadata:
     project: expense
 spec:
   # modify replicas according to your case
-  replicas: 3
+  replicas: 2
   selector:
     # these are used to select the pod to create replicas
     matchLabels:

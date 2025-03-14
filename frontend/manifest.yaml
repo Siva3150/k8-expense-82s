@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: expense 
+  labels: # these are replicaset labels
+    app: frontend
+    tier: web
+    project: expense
+spec:
+  # modify replicas according to your case
+  replicas: 2
+  selector:
+    # these are used to select the pod to create replicas
+    matchLabels:
+      app: frontend
+      tier: web
+      project: expense
+  # this is pod definition
+  template:
+    metadata:
+      # these labels belongs to podd
+      labels:
+        app: frontend
+        tier: web
+        project: expense
+    spec:
+      containers:
+      - name: frontend
+        image: siva3150/frontend:v1
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend 
+  namespace: expense 
+spec:
+  selector:
+    app: frontend
+    tier: web
+    project: expense
+  ports:
+  - name: frontend-port
+    protocol: TCP
+    port: 80 # service port
+    targetPort: 80 # container port

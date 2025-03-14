@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:stable-perl
+        image: siva3150/mysql:v1
 ---
 kind: Service
 apiVersion: v1
